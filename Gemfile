@@ -40,10 +40,11 @@ gem 'slim-rails'
 gem 'cancancan', '~> 1.10'
 gem 'bootstrap-sass'
 gem 'kaminari'
+gem 'faker'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'faker'
+
   gem 'hirb'
   gem 'interactive_editor'
   gem 'awesome_print'
