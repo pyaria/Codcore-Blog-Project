@@ -1,0 +1,24 @@
+body
+  header.index-header
+    div
+article.container-fluid#index-main
+  .row
+    .col-sm-6.col-sm-offset-1
+      -@posts.each do |p|
+        .post.panel.panel-primary
+          .panel-heading
+            h3.panel-title
+              =p.title
+          .panel-body
+            =simple_format(truncate(p.body, length:350))          
+      div.text-center.hidden-xs
+          =paginate @posts, :window => 2
+          
+      ul.pager.visible-xs-block
+        li.previous
+          =link_to_previous_page @posts, '← Newer Posts'
+        li.next
+          =link_to_next_page @posts, 'Older Posts →'
+
+    .col-sm-3.col-sm-offset-1.well 
+      p test 

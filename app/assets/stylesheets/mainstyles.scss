@@ -1,0 +1,158 @@
+$border-radius-base: 2px;
+$panel-primary-heading-bg: #679CC9;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "_mixins";
+$nav-font-colour: #404040;
+$header-height: 150px;
+$blog-name-w: 1135px;
+$blog-name-h: 158px;
+$thin-font: "Open Sans",sans-serif;
+
+
+body {
+
+  //padding-top: 70px;
+  //background-color: red;
+}
+.index-header {
+  background: image-url('home-bg.jpg') no-repeat center / cover;
+  margin-top: 50px;
+  height: $header-height;
+  @include transitions("", 0.3s);
+  div{
+    background: image-url('blog-name.png') no-repeat center / ($blog-name-w/4) ($blog-name-h/4);
+    height: 100%;
+    @include transitions("", 0.3s);
+
+  }
+}
+#index-main{
+  margin-top: 20px;
+}
+// .index-header
+// padding: 7px 10px;
+// border: 2px solid #252525;
+// z-index: 1;
+// position: relative;
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .index-header{
+    margin-top: 0;
+    height: $header-height*1.5;
+    @include transitions("", 0.3s);
+
+    div{
+      background-size:$blog-name-w/3 $blog-name-h/3;
+      @include transitions("", 0.3s);
+
+    }
+  }
+  .title-text{
+    padding-top: $header-height/2;
+    @include transitions("", 0.3s);
+
+  }
+  .navbar-custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    @include transitions("background-color", 0.3s);
+    /* Force Hardware Acceleration in WebKit */
+    @include transform-translate(0,0,0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    &.is-fixed {
+      /* when the user scrolls down, we hide the header right above the viewport */
+      position: fixed;
+      top: -61px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid #f2f2f2;
+      -webkit-transition: -webkit-transform 0.3s;
+      -moz-transition: -moz-transform 0.3s;
+      transition: transform 0.3s;
+      color: $nav-font-colour;
+      .navbar-brand {
+        color: $nav-font-colour;
+        &:hover,
+        &:focus {
+          color: $brand-primary;
+        }
+      }
+      .nav li a {
+        color: $nav-font-colour;
+        &:hover,
+        &:focus {
+          color: $brand-primary;
+        }
+      }
+    }
+    .nav li a {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: white;
+      padding: 20px;
+      &:hover,
+      &:focus {
+        color: darken(white, 20%);
+      }
+    }
+    .navbar-brand {
+      font-weight: 800;
+      color: white;
+      padding: 20px;
+      &:hover,
+      &:focus {
+        color: darken(white, 20%);
+      }
+    }
+    &.is-visible {
+      /* if the user changes the scrolling direction, we show the header */
+      @include transform-translate(0,100%,0);
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+  .index-header{
+    height:  $header-height*2;
+    @include transitions("", 0.3s);
+
+    div{
+      background-size:$blog-name-w/2.7 $blog-name-h/2.7;
+      @include transitions("", 0.3s);
+
+    }
+  }
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  .index-header{
+    height: $header-height*2.5;
+    @include transitions("", 0.3s);
+
+    div{
+      background-size:$blog-name-w/2 $blog-name-h/2;
+      @include transitions("", 0.3s);
+
+    }
+  }
+  .title-text{
+    line-height: $header-height * 2.5;
+    @include transitions("", 0.3s);
+
+  }
+}

@@ -1,0 +1,8 @@
+
+@import "_mixins";
+@import "mainstyles";
+///* Extra small devices (phones, less than 768px) */
+///* No media query since this is the default in Bootstrap */
+.navbar-custom{
+  @extend .navbar, .navbar-default, .navbar-fixed-top;
+}
