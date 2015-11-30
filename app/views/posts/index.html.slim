@@ -1,16 +1,19 @@
-body
-  header.index-header
-    div
+-content_for :title, "Creative Name | Home Page"
+.header.index-header
+  div
 article.container-fluid#index-main
   .row
-    .col-sm-6.col-sm-offset-1
+    .col-md-6.col-md-offset-1
       -@posts.each do |p|
-        .post.panel.panel-primary
+        .post.panel.panel-info
           .panel-heading
-            h3.panel-title
-              =p.title
+            h2.panel-title
+              =link_to p.title, post_path(p)
+              p.date[title="#{p.created_at.to_formatted_s(:long_ordinal)}"]
+               =distance_of_time_in_words(p.created_at, Time.now)
+               |  ago
           .panel-body
-            =simple_format(truncate(p.body, length:350))          
+            =simple_format(truncate(p.body, length:500, separator:' '))          
       div.text-center.hidden-xs
           =paginate @posts, :window => 2
           
@@ -19,6 +22,28 @@ article.container-fluid#index-main
           =link_to_previous_page @posts, '← Newer Posts'
         li.next
           =link_to_next_page @posts, 'Older Posts →'
-
-    .col-sm-3.col-sm-offset-1.well 
-      p test 
+    .col-md-3.col-md-offset-1
+      .list-group
+          h4.list-group-item.active.text-center
+            | Catagories
+          a.list-group-item[href="#"]
+            | Computers 
+          a.list-group-item[href="#"]
+            | Technology
+          a.list-group-item[href="#"]
+            | Ruby
+          a.list-group-item[href="#"]
+            | Rails
+          a.list-group-item[href="#"]
+            | CSS
+          a.list-group-item[href="#"]
+            | Heroku
+          br
+          h4.text-center Popular Articles
+          .list-group
+            -@popularPosts.each do |a|
+                =link_to post_path(a), class: "list-group-item" do
+                  h5.list-group-item-heading
+                    =a.title
+                  p.list-group-item-text
+                    =truncate(a.body, length: browser.mobile? ? 50 : 100 , separator:' ')

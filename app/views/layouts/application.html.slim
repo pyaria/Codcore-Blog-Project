@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title BlogProject
+    title ==yield :title
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -20,21 +20,41 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand[href=""]
-            | &lt;Creative Blog Name&gt;
+          =link_to "< Creative Blog Name >", root_path, class: "navbar-brand"
         #header-collapse.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a[href="#"]
-                | Home
+              =link_to "Home", root_path
+            -if user_signed_in?
+              li
+                =link_to "New Post", new_post_path
             li
-              a[href="#"]
-                | About
+              -if user_signed_in?
+                a
+                  =current_user.name
+              -else
+                =link_to "Sign Up", new_user_path
             li
-              a[href="#"]
-                | Contact
-            li
-              a[href="#"]
-                | Sign in
-    
+              -if user_signed_in?
+                =link_to "Log Out", sessions_path, method: :delete
+              -else
+                a[href="#" data-toggle="modal" data-target="#login-modal"]
+                  | Log in
+                
+    #login-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel"]
+      .modal-sm.modal-dialog[role="document"]
+        .modal-content
+          .modal-header
+            button.close[type="button" data-dismiss="modal" aria-label="Close"]
+              span[aria-hidden="true"]
+                | ×
+            h4#myModalLabel.modal-title.text-center
+              | Sign In!
+          .modal-body.text-center
+           .row
+            .col-sm-10.col-sm-offset-1
+              =render "sessions/form"
+                  / button.btn.btn-primary[type="button"]
+                  / | Save changes
+                  / 
     = yield

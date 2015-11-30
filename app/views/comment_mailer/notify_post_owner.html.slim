@@ -1,0 +1,13 @@
+p
+  | Hello 
+  = @post.user.name
+  | ,
+p
+  = @user.name.capitalize
+  |  has just commented on your post titled: 
+  = @post.title
+  | .
+p
+  | Regards,
+p
+  | Creative Blog Owner

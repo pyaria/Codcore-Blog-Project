@@ -1,0 +1,2 @@
+#unfavourite.pull-right
+ = link_to fa_icon("star"), [@post, @post.favourite_for(current_user)], method: :delete, remote: true

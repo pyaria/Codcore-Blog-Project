@@ -43,4 +43,14 @@ $(document).ready(function() {
                 this.previousTop = currentTop;
             });
     }
+    $('#post_tag_ids').selectize({
+        delimiter: ' ',
+        create: function(input) {
+            return {
+                value: input,
+                text: input,
+            }
+        }
+    });
+    $('#favs').popover();
 });

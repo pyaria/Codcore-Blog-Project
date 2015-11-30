@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :posts
+  post '/posts/new' => 'posts#create', as: :create_post
+  patch '/posts/:id/edit' => 'posts#update', as: :update_post
+  resources :posts do
+    resources :favourites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+  post '/users/new' => 'users#create', as: :create_user
+  resources :users, only: [:new, :create]
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
   get '/page/:page' => 'posts#index'
   root 'posts#index'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
