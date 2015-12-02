@@ -1,0 +1,14 @@
+-content_for :title, "Creative Name | Sign Up"
+.new-post-header
+
+.container-fluid.new-post
+  .row
+    .col-sm-4.col-sm-offset-4
+      h3.text-center Sign up!
+      = simple_form_for @user, url: create_user_path do |f|
+        = f.input :name, label: 'First name' 
+        = f.input :email
+        = f.input :password, error: "Password must not be blank", required: true
+        = f.input :password_confirmation, error: "Passwords must match", required: true
+        .text-center
+          = f.button :submit, "Create account"

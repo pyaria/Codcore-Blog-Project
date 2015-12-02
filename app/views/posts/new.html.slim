@@ -1,0 +1,14 @@
+-content_for :title, "Creative Name | New Post"
+.new-post-header
+
+.container-fluid.new-post
+  .row
+    .col-sm-6.col-sm-offset-3
+      h3.text-center Create new post
+      = simple_form_for @post, url: create_post_path do |f|
+        = f.input :title, label: 'Post title'
+        = f.input :body, input_html:{rows: 14}
+        = f.association :tags, as: :select
+
+        .text-center
+          = f.button :submit

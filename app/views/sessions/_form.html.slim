@@ -1,0 +1,8 @@
+#login
+  =simple_form_for :session, url: sessions_path, remote: true, html:{id: "login-form"} do |f|
+    =f.input :email, required: false
+    =f.input :password, required: false
+    .modal-footer
+      button.pull-left.btn.btn-default[type="button" data-dismiss="modal"]
+        | Close
+      =f.submit "Sign in", class: "btn btn-primary pull-right"

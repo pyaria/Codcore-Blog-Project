@@ -1,0 +1,31 @@
+-content_for :title, "Creative Name | #{@post.title}"
+
+.header.show-header
+
+article.container-fluid
+  .row
+    .col-sm-8.col-sm-offset-2
+      .post.panel.panel-info.show-body
+        .panel-heading
+          h2.panel-title 
+            =@post.title
+            p.date[title="#{@post.created_at.to_formatted_s(:long_ordinal)}"]
+             =distance_of_time_in_words(@post.created_at, Time.now)
+             |  ago
+        .panel-body
+          =simple_format(@post.body)
+        .panel-footer.clearfix
+          - if user_signed_in? && @post.favourited_by?(current_user)
+            =render 'unfavourite'
+          - else
+            =render 'favourite'
+      .tools.text-center
+        =link_to "Edit", edit_post_path(@post), class: "btn btn-default" if can? :edit, @post
+        =link_to "Delete", post_path(@post),method: :delete, class: "btn btn-primary" if can? :edit, @post
+      h3.text-center Comments
+      =render 'comments/form'
+      .comment
+        -@post.comments.each do |comment|
+          =render 'comments/comment', comment: comment
+      .text-center
+        =link_to "← Home page", root_path, class: "btn btn-primary"

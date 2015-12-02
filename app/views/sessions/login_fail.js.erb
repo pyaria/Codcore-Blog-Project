@@ -1,0 +1,3 @@
+$("#login").replaceWith("<%= j render '/sessions/form' %>");
+$("#login").prepend("<p class=\"\">Invalid Credentials</p>");
+$("#login-form").addClass("has-error");

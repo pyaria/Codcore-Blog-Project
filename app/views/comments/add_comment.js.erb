@@ -1,0 +1,8 @@
+$(".comment").prepend("<%= j(render('/comments/comment', comment: @comment)) %>");
+
+<%# we need to reset @answer to become Answer.new because @answer is now
+    persisted which means the form will submit a PATCH request instead of
+    POST request. We need the form to be a new answer form and not an update
+    answer form. %>
+<% @comment = Comment.new %>
+$("#new_comment").replaceWith("<%= j render 'form' %>");

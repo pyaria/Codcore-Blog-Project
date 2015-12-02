@@ -1,0 +1,17 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin transitions($property, $time){
+  -webkit-transition: unquote($property) $time;
+  -moz-transition: unquote($property) $time;
+  transition: unquote($property) $time;
+}
+@mixin transform-translate($first, $second, $third){
+  -webkit-transform: translate3d($first, $second, $third);
+  -moz-transform: translate3d($first, $second, $third);
+  -ms-transform: translate3d($first, $second, $third);
+  transform: translate3d($first, $second, $third);
+}

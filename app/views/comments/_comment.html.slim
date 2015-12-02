@@ -1,0 +1,8 @@
+.post.panel.panel-default.show-body[id="#{dom_id(comment)}"]
+  .panel-heading
+    h2.panel-title 
+      =comment.user.name
+  .panel-body
+    =comment.body
+    -if can? :destroy, comment
+      =link_to "Delete", post_comment_path(@post, comment), class: "pull-right", method: :delete, remote: true

@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+include ActionView::Helpers::TagHelper
+
+100.times do
+  parg = ""
+  rand(2..8).times do
+    parg += Faker::Lorem.paragraph(rand(7..19))
+    parg += "\n\n"
+  end
+  Post.create({
+    title: Faker::Company.catch_phrase,
+    body: parg
+
+    })
+end
